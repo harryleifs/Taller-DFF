@@ -1,7 +1,7 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.STD_LOGIC_ARITH.ALL;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.STD_LOGIC_ARITH.ALL;
+USE IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity contador_free_run is
     Port (
@@ -23,7 +23,6 @@ begin
         elsif rising_edge(clk) then
             if ena = '1' then
                 cuenta <= cuenta + 1;
-            -- Si ena = '0', mantiene el valor actual (cuenta <= cuenta)
             end if;
         end if;
     end process;
