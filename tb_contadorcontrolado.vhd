@@ -1,10 +1,10 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
 
-entity tb_contador_controlado is
-end tb_contador_controlado;
+entity tb_contadorc is
+end tb_contadorc;
 
-architecture sim of tb_contador_controlado is
+architecture sim of tb_contadorc is
     signal clk        : STD_LOGIC := '0';
     signal rst        : STD_LOGIC := '1';
     signal ena        : STD_LOGIC := '0';
@@ -14,8 +14,8 @@ architecture sim of tb_contador_controlado is
     constant clk_period : time := 20 ns;
 begin
 
-    -- Instancia del contador controlado
-    uut: entity work.contador_controlado
+    
+    uut: entity work.contadorcon
         port map (
             clk        => clk,
             rst        => rst,
@@ -24,7 +24,7 @@ begin
             endCounter => endCounter
         );
 
-    -- Generador de Reloj
+   
     clk_process : process
     begin
         clk <= '0';
@@ -33,7 +33,7 @@ begin
         wait for clk_period / 2;
     end process;
 
-    -- Proceso de estímulos
+    
     stim_proc: process
     begin
         rst <= '1';
@@ -43,10 +43,10 @@ begin
         rst <= '0';
         ena <= '1';
         
-        -- Dejar correr el tiempo suficiente para ver el ciclo completo de 0 a 9 y el reinicio
+        
         wait for 350 ns;
 
-        -- Probar desactivación con ena
+       
         ena <= '0';
         wait for 60 ns;
 
