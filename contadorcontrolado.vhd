@@ -1,9 +1,9 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.STD_LOGIC_ARITH.ALL;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.STD_LOGIC_ARITH.ALL;
+USE IEEE.STD_LOGIC_UNSIGNED.ALL;
 
-entity contador_controlado is
+entity contadorcon is
     Port (
         clk        : in  STD_LOGIC;
         rst        : in  STD_LOGIC;
@@ -11,11 +11,11 @@ entity contador_controlado is
         q          : out STD_LOGIC_VECTOR(3 downto 0);
         endCounter : out STD_LOGIC
     );
-end contador_controlado;
+end contadorcon;
 
-architecture Behavioral of contador_controlado is
+architecture Behavioral of contadorcon is
     signal cuenta : STD_LOGIC_VECTOR(3 downto 0) := (others => '0');
-    constant MAX_VAL : STD_LOGIC_VECTOR(3 downto 0) := "1001"; -- Límite en 9
+    constant MAX_VAL : STD_LOGIC_VECTOR(3 downto 0) := "1001"; 
 begin
 
     process(clk, rst)
@@ -27,7 +27,7 @@ begin
             if ena = '1' then
                 if cuenta = MAX_VAL then
                     cuenta <= "0000";
-                    endCounter <= '1'; -- Pulso de fin de conteo
+                    endCounter <= '1'; 
                 else
                     cuenta <= cuenta + 1;
                     endCounter <= '0';
