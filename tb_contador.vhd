@@ -1,22 +1,22 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
-entity tb_contador_free_run is
+entity tb_contador_free_run is -- freerun o descendente
 end tb_contador_free_run;
 
 architecture sim of tb_contador_free_run is
-    -- Señales de estímulo
+    
     signal clk : STD_LOGIC := '0';
     signal rst : STD_LOGIC := '1';
     signal ena : STD_LOGIC := '0';
     signal q   : STD_LOGIC_VECTOR(3 downto 0);
 
-    -- Período del reloj
+    
     constant clk_period : time := 20 ns;
 
 begin
 
-    -- Instancia de la unidad bajo prueba (UUT)
+    
     uut: entity work.contador_free_run
         port map (
             clk => clk,
@@ -25,7 +25,7 @@ begin
             q   => q
         );
 
-    -- Generador de Reloj
+    
     clk_process : process
     begin
         clk <= '0';
@@ -34,30 +34,26 @@ begin
         wait for clk_period / 2;
     end process;
 
-    -- Estímulos de prueba
+    
     stim_proc: process
     begin
-        -- Pulso de reset inicial
+        
         rst <= '1';
         ena <= '0';
         wait for 40 ns;
-        
+            
         rst <= '0';
         wait for 20 ns;
-
-        -- Habilitar conteo
+            
         ena <= '1';
-        wait for 400 ns; -- Permite ver varios ciclos de conteo y el desbordamiento (overflow)
-
-        -- Deshabilitar conteo (debe retener el valor)
+        wait for 400 ns; 
+            
         ena <= '0';
         wait for 60 ns;
-
-        -- Reactivar conteo
+            
         ena <= '1';
         wait for 100 ns;
 
-        -- Reset asíncrono en marcha
         rst <= '1';
         wait for 30 ns;
         rst <= '0';
@@ -65,4 +61,4 @@ begin
         wait;
     end process;
 
-end sim;v
+end sim;
