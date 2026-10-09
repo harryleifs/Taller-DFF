@@ -1,18 +1,18 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.STD_LOGIC_ARITH.ALL;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.STD_LOGIC_ARITH.ALL;
+USE IEEE.STD_LOGIC_UNSIGNED.ALL;
 
-entity contador_descendente is
+entity descendente is
     Port (
         clk : in  STD_LOGIC;
         rst : in  STD_LOGIC;
         ena : in  STD_LOGIC;
         q   : out STD_LOGIC_VECTOR(3 downto 0)
     );
-end contador_descendente;
+end descendente;
 
-architecture Behavioral of contador_descendente is
+architecture Behavioral of descendente is
     signal cuenta : STD_LOGIC_VECTOR(3 downto 0);
 begin
 
@@ -22,7 +22,7 @@ begin
             cuenta <= "0000";
         elsif rising_edge(clk) then
             if ena = '1' then
-                cuenta <= cuenta - 1; -- Decrementa en cada flanco de subida
+                cuenta <= cuenta - 1; 
             end if;
         end if;
     end process;
